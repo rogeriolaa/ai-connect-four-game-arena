@@ -1,26 +1,108 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #111111;
+  --foreground: #f0f0f0;
 }
 
 body {
+  font-family: "Press Start 2P", cursive;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-size: 12px;
+}
+
+.pixel-shadow {
+  box-shadow: 4px 4px 0px #000;
+}
+
+.pixel-shadow-sm {
+  box-shadow: 2px 2px 0px #000;
+}
+
+.pixel-border {
+  border: 4px solid #000;
+}
+
+.cell-piece {
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.cell-empty:hover > div {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.winning-cell {
+  animation: pulse-win 1s infinite;
+}
+
+@keyframes pulse-win {
+  0%,
+  100% {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px 5px currentColor;
+  }
+  50% {
+    transform: scale(1);
+    box-shadow: none;
+  }
+}
+
+.leaderboard-item {
+  animation: slide-in 0.5s ease-out forwards;
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+@keyframes slide-in {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Smooth transition for hover effects */
+* {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Custom scrollbar for Game Log */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Base text styles */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+button,
+input,
+select,
+textarea {
+  font-family: "Press Start 2P", cursive;
+}
+
+/* Ensure body font is consistent */
+body {
+  font-family: "Press Start 2P", cursive;
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
